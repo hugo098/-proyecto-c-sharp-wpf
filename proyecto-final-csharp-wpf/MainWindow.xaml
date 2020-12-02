@@ -5,8 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:proyecto_final_csharp_wpf"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="Proveedores" Height="450" Width="480" Loaded="Window_Loaded">
+    <Canvas Margin="0,0,0,-20">
+        <DataGrid Name="dg_proveedores" HorizontalAlignment="Left" Height="150" VerticalAlignment="Top" Width="413" SelectionChanged="Dg_proveedores_SelectionChanged" AlternationCount="-2" ColumnWidth="*" Canvas.Left="29" Canvas.Top="207" CanUserResizeColumns="False" CanUserSortColumns="False" CanUserReorderColumns="False" IsReadOnly="True"/>
+        <Label Content="Proveedores" Height="30" Canvas.Left="40" Canvas.Top="8" Width="291" FontSize="16"/>
+        <Label Content="RUC" Canvas.Left="40" Canvas.Top="55" RenderTransformOrigin="0.079,0.538"/>
+        <Label Content="Razón Social" Canvas.Left="40" Canvas.Top="91" RenderTransformOrigin="0.079,0.538"/>
+        <Label Content="Teléfono" Canvas.Left="40" Canvas.Top="122" RenderTransformOrigin="0.079,0.538"/>
+        <Label Content="Dirección" Canvas.Left="40" Canvas.Top="153" RenderTransformOrigin="0.079,0.538"/>
+        <TextBox x:Name="txt_ruc" Height="23" Canvas.Left="122" TextWrapping="Wrap" Text="" Canvas.Top="58" Width="304"/>
+        <TextBox x:Name="txt_razon" Height="23" Canvas.Left="122" TextWrapping="Wrap" Text="" Canvas.Top="93" Width="304"/>
+        <TextBox x:Name="txt_telefono" Height="23" Canvas.Left="122" TextWrapping="Wrap" Text="" Canvas.Top="122" Width="304"/>
+        <TextBox Name="txt_direccion" Height="23" Canvas.Left="122" TextWrapping="Wrap" Text="" Canvas.Top="153" Width="304"/>
+        <Button x:Name="btn_crear" Content="Guardar" Canvas.Left="175" Canvas.Top="377" Width="75" Click="Btn_crear_Click"/>
+        <Button x:Name="btn_modificar" Content="Editar" Canvas.Left="272" Canvas.Top="377" Width="75" Click="Btn_modificar_Click"/>
+        <Button x:Name="btn_eliminar" Content="Eliminar"  Canvas.Left="367" Canvas.Top="377" Width="75" Click="Btn_eliminar_Click"/>
+    </Canvas>
 </Window>
