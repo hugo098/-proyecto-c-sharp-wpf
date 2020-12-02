@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ComercialModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ComercialModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -77,10 +77,11 @@
           <Key>
             <PropertyRef Name="idCliente" />
           </Key>
-          <Property Name="idCliente" Type="int" Nullable="false" />
+          <Property Name="idCliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="telefono" Type="varchar" MaxLength="20" />
           <Property Name="direccion" Type="varchar" MaxLength="20" />
+          <Property Name="documento" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Contacto">
           <Key>
@@ -123,10 +124,11 @@
           <Key>
             <PropertyRef Name="idProveedor" />
           </Key>
-          <Property Name="idProveedor" Type="int" Nullable="false" />
+          <Property Name="idProveedor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="razonSocial" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="telefono" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="direccion" Type="varchar" MaxLength="20" />
+          <Property Name="RUC" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Venta">
           <Key>
@@ -136,7 +138,7 @@
           <Property Name="fecha" Type="datetime" Nullable="false" />
           <Property Name="cliente" Type="int" />
         </EntityType>
-        <Association Name="FK__DetalleVe__idPro__4AB81AF0">
+        <Association Name="FK__DetalleVe__idPro__6EF57B66">
           <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
           <End Role="DetalleVenta" Type="Self.DetalleVenta" Multiplicity="*" />
           <ReferentialConstraint>
@@ -148,7 +150,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DetalleVe__idVen__49C3F6B7">
+        <Association Name="FK__DetalleVe__idVen__6E01572D">
           <End Role="Venta" Type="Self.Venta" Multiplicity="1" />
           <End Role="DetalleVenta" Type="Self.DetalleVenta" Multiplicity="*" />
           <ReferentialConstraint>
@@ -160,7 +162,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Producto__catego__173876EA">
+        <Association Name="FK__Producto__catego__6383C8BA">
           <End Role="Categoria" Type="Self.Categoria" Multiplicity="0..1" />
           <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -172,7 +174,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Producto__marca__164452B1">
+        <Association Name="FK__Producto__marca__628FA481">
           <End Role="Marca" Type="Self.Marca" Multiplicity="0..1" />
           <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -184,7 +186,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Producto__provee__4CA06362">
+        <Association Name="FK__Producto__provee__656C112C">
           <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="0..1" />
           <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -196,7 +198,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Venta__cliente__1DE57479">
+        <Association Name="FK__Venta__cliente__6B24EA82">
           <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
           <End Role="Venta" Type="Self.Venta" Multiplicity="*" />
           <ReferentialConstraint>
@@ -279,27 +281,27 @@
           <EntitySet Name="Producto" EntityType="Self.Producto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Proveedor" EntityType="Self.Proveedor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Venta" EntityType="Self.Venta" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__DetalleVe__idPro__4AB81AF0" Association="Self.FK__DetalleVe__idPro__4AB81AF0">
+          <AssociationSet Name="FK__DetalleVe__idPro__6EF57B66" Association="Self.FK__DetalleVe__idPro__6EF57B66">
             <End Role="Producto" EntitySet="Producto" />
             <End Role="DetalleVenta" EntitySet="DetalleVenta" />
           </AssociationSet>
-          <AssociationSet Name="FK__DetalleVe__idVen__49C3F6B7" Association="Self.FK__DetalleVe__idVen__49C3F6B7">
+          <AssociationSet Name="FK__DetalleVe__idVen__6E01572D" Association="Self.FK__DetalleVe__idVen__6E01572D">
             <End Role="Venta" EntitySet="Venta" />
             <End Role="DetalleVenta" EntitySet="DetalleVenta" />
           </AssociationSet>
-          <AssociationSet Name="FK__Producto__catego__173876EA" Association="Self.FK__Producto__catego__173876EA">
+          <AssociationSet Name="FK__Producto__catego__6383C8BA" Association="Self.FK__Producto__catego__6383C8BA">
             <End Role="Categoria" EntitySet="Categoria" />
             <End Role="Producto" EntitySet="Producto" />
           </AssociationSet>
-          <AssociationSet Name="FK__Producto__marca__164452B1" Association="Self.FK__Producto__marca__164452B1">
+          <AssociationSet Name="FK__Producto__marca__628FA481" Association="Self.FK__Producto__marca__628FA481">
             <End Role="Marca" EntitySet="Marca" />
             <End Role="Producto" EntitySet="Producto" />
           </AssociationSet>
-          <AssociationSet Name="FK__Producto__provee__4CA06362" Association="Self.FK__Producto__provee__4CA06362">
+          <AssociationSet Name="FK__Producto__provee__656C112C" Association="Self.FK__Producto__provee__656C112C">
             <End Role="Proveedor" EntitySet="Proveedor" />
             <End Role="Producto" EntitySet="Producto" />
           </AssociationSet>
-          <AssociationSet Name="FK__Venta__cliente__1DE57479" Association="Self.FK__Venta__cliente__1DE57479">
+          <AssociationSet Name="FK__Venta__cliente__6B24EA82" Association="Self.FK__Venta__cliente__6B24EA82">
             <End Role="Cliente" EntitySet="Cliente" />
             <End Role="Venta" EntitySet="Venta" />
           </AssociationSet>
@@ -320,8 +322,7 @@
             <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ComercialModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -401,6 +402,7 @@
           <Property Name="telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="direccion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Venta" Relationship="Self.FK__Venta__cliente__1DE57479" FromRole="Cliente" ToRole="Venta" />
+          <Property Name="documento" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Contacto">
           <Key>
@@ -428,7 +430,6 @@
           </Key>
           <Property Name="idMarca" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="descripcionMarca" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Producto" Relationship="Self.FK__Producto__marca__164452B1" FromRole="Marca" ToRole="Producto" />
         </EntityType>
         <EntityType Name="Producto">
           <Key>
@@ -455,6 +456,7 @@
           <Property Name="telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="direccion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Producto" Relationship="Self.FK__Producto__provee__4CA06362" FromRole="Proveedor" ToRole="Producto" />
+          <Property Name="RUC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Venta">
           <Key>
@@ -693,6 +695,7 @@
           <EntitySetMapping Name="Cliente">
             <EntityTypeMapping TypeName="ComercialModel.Cliente">
               <MappingFragment StoreEntitySet="Cliente">
+                <ScalarProperty Name="documento" ColumnName="documento" />
                 <ScalarProperty Name="idCliente" ColumnName="idCliente" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="telefono" ColumnName="telefono" />
@@ -743,6 +746,7 @@
           <EntitySetMapping Name="Proveedor">
             <EntityTypeMapping TypeName="ComercialModel.Proveedor">
               <MappingFragment StoreEntitySet="Proveedor">
+                <ScalarProperty Name="RUC" ColumnName="RUC" />
                 <ScalarProperty Name="idProveedor" ColumnName="idProveedor" />
                 <ScalarProperty Name="razonSocial" ColumnName="razonSocial" />
                 <ScalarProperty Name="telefono" ColumnName="telefono" />

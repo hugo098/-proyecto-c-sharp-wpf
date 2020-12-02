@@ -24,6 +24,7 @@ namespace proyecto_final_csharp_wpf
         public string nombre { get; set; }
         public string telefono { get; set; }
         public string direccion { get; set; }
+        public string documento { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Venta> Venta { get; set; }

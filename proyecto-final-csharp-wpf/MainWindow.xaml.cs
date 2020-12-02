@@ -29,14 +29,21 @@ namespace proyecto_final_csharp_wpf
 
         public async void ObtenerProveedores()
         {
-            string result1 = await ProveedorAPI.ObtenerProveedores();
-            //string result1 = "[{\"idProveedor\":4,\"razonSocial\":\"Empresa A\",\"telefono\":\"021-369847\",\"direccion\":\"Calle A\",\"RUC\":\"123456789 -9\"},{\"idProveedor\":5, \"razonSocial\":\"Empresa B\",\"telefono\":\"068 -2688769\",\"direccion\":\"Calle B\",\"RUC\":\"45678912 -9\"},{\"idProveedor\":6,\"razonSocial\":\"Proveedor 1\",\"telefono\":\"0971 -396547\",\"direccion\":\"Direccion\",\"RUC\":\"454545456\"}]";
+            try
+            {
+                string result1 = await ProveedorAPI.ObtenerProveedores();
+                //string result1 = "[{\"idProveedor\":4,\"razonSocial\":\"Empresa A\",\"telefono\":\"021-369847\",\"direccion\":\"Calle A\",\"RUC\":\"123456789 -9\"},{\"idProveedor\":5, \"razonSocial\":\"Empresa B\",\"telefono\":\"068 -2688769\",\"direccion\":\"Calle B\",\"RUC\":\"45678912 -9\"},{\"idProveedor\":6,\"razonSocial\":\"Proveedor 1\",\"telefono\":\"0971 -396547\",\"direccion\":\"Direccion\",\"RUC\":\"454545456\"}]";
 
-            JArray JarrayProveedores = JArray.Parse(result1);
+                JArray JarrayProveedores = JArray.Parse(result1);
 
 
 
-            dg_proveedores.ItemsSource = JarrayProveedores;
+                dg_proveedores.ItemsSource = JarrayProveedores;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Se ha producido el siguiente error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
 
@@ -67,18 +74,24 @@ namespace proyecto_final_csharp_wpf
 
         private async void Btn_crear_Click(object sender, RoutedEventArgs e)
         {
-            if (validarCampos() == true)
+            try
             {
-                dynamic proveedordynamic = new ExpandoObject();
-                proveedordynamic.RUC = txt_ruc.Text;
-                proveedordynamic.razonSocial = txt_razon.Text;
-                proveedordynamic.telefono = txt_telefono.Text;
-                proveedordynamic.direccion = txt_direccion.Text;
+                if (validarCampos() == true)
+                {
+                    dynamic proveedordynamic = new ExpandoObject();
+                    proveedordynamic.RUC = txt_ruc.Text;
+                    proveedordynamic.razonSocial = txt_razon.Text;
+                    proveedordynamic.telefono = txt_telefono.Text;
+                    proveedordynamic.direccion = txt_direccion.Text;
 
-                var proveedoragregado = await ProveedorAPI.AgregarProveedor(proveedordynamic);
-                MessageBox.Show(proveedoragregado);
-                limpiar();
-                ObtenerProveedores();
+                    var proveedoragregado = await ProveedorAPI.AgregarProveedor(proveedordynamic);
+                    MessageBox.Show(proveedoragregado);
+                    limpiar();
+                    ObtenerProveedores();
+                }
+            }catch(Exception ex)
+            {
+                MessageBox.Show("Se ha producido el siguiente error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             
 
@@ -86,39 +99,51 @@ namespace proyecto_final_csharp_wpf
 
         private async void Btn_modificar_Click(object sender, RoutedEventArgs e)
         {
-            if (dg_proveedores.SelectedItem != null)
+            try
             {
-                if (validarCampos() == true)
+                if (dg_proveedores.SelectedItem != null)
                 {
-                    dynamic proveedordynamic = dg_proveedores.SelectedItem;
+                    if (validarCampos() == true)
+                    {
+                        dynamic proveedordynamic = dg_proveedores.SelectedItem;
 
-                    proveedordynamic.RUC = txt_ruc.Text;
-                    proveedordynamic.razonSocial = txt_razon.Text;
-                    proveedordynamic.telefono = txt_telefono.Text;
-                    proveedordynamic.direccion = txt_direccion.Text;
+                        proveedordynamic.RUC = txt_ruc.Text;
+                        proveedordynamic.razonSocial = txt_razon.Text;
+                        proveedordynamic.telefono = txt_telefono.Text;
+                        proveedordynamic.direccion = txt_direccion.Text;
 
-                    var proveedormodif = await ProveedorAPI.ModificarProveedor(proveedordynamic);
-                    MessageBox.Show(proveedormodif);
-                    limpiar();
-                    ObtenerProveedores();
+                        var proveedormodif = await ProveedorAPI.ModificarProveedor(proveedordynamic);
+                        MessageBox.Show(proveedormodif);
+                        limpiar();
+                        ObtenerProveedores();
+                    }
                 }
+                else
+                    MessageBox.Show("Debe seleccionar primeramente el proveedor a modificar ");
+            }catch(Exception ex)
+            {
+                MessageBox.Show("Se ha producido el siguiente error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            else
-                MessageBox.Show("Debe seleccionar primeramente el cliente a modificar ");
         }        
 
         private async void Btn_eliminar_Click(object sender, RoutedEventArgs e)
         {
-            if (dg_proveedores.SelectedItem != null)
+            try
             {
-                dynamic proveedordynamic = dg_proveedores.SelectedItem;
-                var proveedoragregado = await ProveedorAPI.EliminarProveedor(proveedordynamic);
-                MessageBox.Show(proveedoragregado);
-                limpiar();
-                ObtenerProveedores();
+                if (dg_proveedores.SelectedItem != null)
+                {
+                    dynamic proveedordynamic = dg_proveedores.SelectedItem;
+                    var proveedoragregado = await ProveedorAPI.EliminarProveedor(proveedordynamic);
+                    MessageBox.Show(proveedoragregado);
+                    limpiar();
+                    ObtenerProveedores();
+                }
+                else
+                    MessageBox.Show("Debe seleccionar primeramente el proveedor a eliminar ");
+            }catch(Exception ex)
+            {
+                MessageBox.Show("Se ha producido el siguiente error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            else
-                MessageBox.Show("Debe seleccionar primeramente el cliente a eliminar ");
         }
 
         public void limpiar()

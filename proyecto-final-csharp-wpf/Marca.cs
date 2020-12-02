@@ -14,16 +14,7 @@ namespace proyecto_final_csharp_wpf
     
     public partial class Marca
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Marca()
-        {
-            this.Producto = new HashSet<Producto>();
-        }
-    
         public int idMarca { get; set; }
         public string descripcionMarca { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Producto> Producto { get; set; }
     }
 }

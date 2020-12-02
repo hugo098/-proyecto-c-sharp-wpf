@@ -115,6 +115,12 @@
     <Compile Include="Venta.cs">
       <DependentUpon>ComercialModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="w_Marca.xaml.cs">
+      <DependentUpon>w_Marca.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="w_menu.xaml.cs">
+      <DependentUpon>w_menu.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -137,6 +143,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="w_Marca.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="w_menu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

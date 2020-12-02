@@ -93,7 +93,7 @@ namespace proyecto_final_csharp_wpf
                 HttpResponseMessage response = await client.DeleteAsync("Proveedores/" + u.idProveedor);
                 if (response.IsSuccessStatusCode)
                 {
-                    return "Se modifico satisfactoriamente";
+                    return "Se eliminó satisfactoriamente";
                 }
                 else
                 {
